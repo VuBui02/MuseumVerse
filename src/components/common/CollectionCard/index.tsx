@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef, memo } from 'react'
 import { gsap } from "gsap";
 
 type Props = {
@@ -42,4 +42,4 @@ const CollectionCard = ({ imgHref, name, quantity, volume }: Props) => {
   )
 }
 
-export default CollectionCard
+export default memo(CollectionCard)

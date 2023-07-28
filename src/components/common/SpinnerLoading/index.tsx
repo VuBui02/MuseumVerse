@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 type Props = {
   size?: number
@@ -16,4 +16,4 @@ const SpinnerLoading = ({ size = 8 }: Props) => {
   )
 }
 
-export default SpinnerLoading
+export default memo(SpinnerLoading)

@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const ConnectWallet = () => {
@@ -8,4 +8,4 @@ const ConnectWallet = () => {
   )
 }
 
-export default ConnectWallet
+export default memo(ConnectWallet)

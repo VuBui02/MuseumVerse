@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 
 type Props = {
   index: number
@@ -36,4 +36,4 @@ const CollectionTicket = ({ index, imgHref, name, floor, vol, diffPercent }: Pro
   )
 }
 
-export default CollectionTicket
+export default memo(CollectionTicket)

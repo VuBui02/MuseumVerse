@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 
 type Props = {
   type?: string
@@ -29,4 +29,4 @@ const CustomInput = ({ type = 'text', label, placeholder, id, value, isError, is
   )
 }
 
-export default CustomInput
+export default memo(CustomInput)

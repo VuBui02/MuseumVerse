@@ -84,7 +84,17 @@ const Header = () => {
             {t("loans")}
           </p>
         </Link>
-        <ConnectWallet />
+        <div className="relative" ref={toggleRef} onMouseDown={handleMouseDown}>
+          {accountInfo.publicKey.length === 0 ?
+            <ConnectWallet /> :
+            <div className="bg-black rounded-xl text-white font-semibold px-4 py-2 text-sm cursor-pointer hover:bg-white border hover:border-black hover:text-black transition-all delay-75">
+              {accountInfo.publicKey.slice(0, 7)}...
+            </div>
+          }
+        </div>
+        <div className={`absolute top-16 right-8 ${isOpenDropDownMenu ? 'menu-show' : 'menu-hidden'}`} ref={dropDownRef}>
+          <DropDownMenu />
+        </div>
       </div >
     </div >
   );

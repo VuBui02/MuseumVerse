@@ -1,7 +1,7 @@
-import { memo } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { PublicKey, Transaction } from "@solana/web3.js";
+import { useBoundStore } from "../../../zustand";
 
 type DisplayEncoding = "utf8" | "hex";
 type PhantomEvent = "disconnect" | "connect" | "accountChanged";
@@ -52,6 +52,10 @@ const ConnectWallet = () => {
     undefined
   );
 
+  const { setWebAccountInfo } = useBoundStore((store) => ({
+    setWebAccountInfo: store.saveWebAccountInfo,
+  }))
+
   const connectWallet = async () => {
     // @ts-ignore
     const { solana } = window;
@@ -60,12 +64,16 @@ const ConnectWallet = () => {
     if (solana) {
       try {
         const response = await solana.connect();
+        console.log('account info', response)
         console.log("wallet account ", response.publicKey.toString());
+        const accountInfo = {
+          publicKey: response.publicKey.toString()
+        }
+        setWebAccountInfo(accountInfo)
         setWalletKey(response.publicKey.toString());
         console.log(response.publicKey.toString());
       } catch (err) {
         console.log(err);
-
         // { code: 4001, message: 'User rejected the request.' }
       }
     }

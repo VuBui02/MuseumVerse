@@ -5,6 +5,7 @@ import ConnectWallet from "../../common/ConnectWallet";
 import DropDownMenu from "./components/DropDownMenu";
 import { useClickOutside } from "../../../hooks";
 import { Link } from "react-router-dom";
+import { useBoundStore } from '../../../zustand'
 
 const SCROLL_THRESHOLD = 80;
 
@@ -18,7 +19,11 @@ const Header = () => {
   const toggleRef = useRef<HTMLDivElement>(null);
   const dropDownRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside(dropDownRef, toggleRef, () => setIsOpenDropDownMenu(false));
+  const { accountInfo } = useBoundStore((store) => ({
+    accountInfo: store.accountInfo,
+  }))
+
+  useClickOutside(dropDownRef, toggleRef, () => setIsOpenDropDownMenu(false))
 
   useEffect(() => {
     const changeColor = () => {
@@ -47,9 +52,8 @@ const Header = () => {
 
   return (
     <div
-      className={`sticky top-0 h-10 ${
-        isTransParent ? "backdrop-blur-lg bg-white/30" : "bg-slate-100"
-      } text-slate-900 flex items-center p-8 border-b border-slate-300 justify-between w-screen z-99`}
+      className={`sticky top-0 h-10 ${isTransParent ? "backdrop-blur-lg bg-white/30" : "bg-slate-100"
+        } text-slate-900 flex items-center p-8 border-b border-slate-300 justify-between w-screen z-99`}
     >
       <div className="flex gap-8 items-center">
         <Link to="/">
@@ -70,22 +74,19 @@ const Header = () => {
             {t("collections")}
           </p>
         </Link>
-
         <Link to="/wallet">
           <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
             {t("sellItems")}
           </p>
         </Link>
-
         <Link to="/wallet/loans">
           <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
             {t("loans")}
           </p>
         </Link>
-
         <ConnectWallet />
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

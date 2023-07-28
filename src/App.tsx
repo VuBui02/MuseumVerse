@@ -2,6 +2,9 @@ import React from "react";
 import HomePage from "./pages";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CreateNFTPage from "./pages/create-nft";
+import CollectionsPage from "./pages/CollectionsPage";
+import WalletPage from "./pages/WalletPage";
+import NotConnectWalletScreen from "./components/screens/WalletPage/components/NotConnectWalletScreen";
 
 function App() {
   const router = createBrowserRouter([
@@ -12,6 +15,18 @@ function App() {
     {
       path: "/create-nft",
       element: <CreateNFTPage />,
+    },
+    {
+      path: "/collections",
+      element: <CollectionsPage />,
+    },
+    {
+      path: "/wallet",
+      element: <WalletPage />,
+    },
+    {
+      path: "/wallet/loans",
+      element: <NotConnectWalletScreen />,
     },
   ]);
 

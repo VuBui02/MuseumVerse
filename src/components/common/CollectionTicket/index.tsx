@@ -9,9 +9,9 @@ type Props = {
   diffPercent?: number
 }
 
-const TrendinCollectionItem = ({ index, imgHref, name, floor, vol, diffPercent }: Props) => {
+const CollectionTicket = ({ index, imgHref, name, floor, vol, diffPercent }: Props) => {
   return (
-    <div className="flex items-center w-[34%] justify-between border-b border-gray-300 p-4 my-4">
+    <div className="flex items-center w-full justify-between border-b border-gray-300 p-4 my-4 hover:bg-amber-50 cursor-pointer transition-all delay-[30ms]">
       <div className="flex gap-4 items-center">
         <p className="font-semibold">{index}</p>
         <img src={imgHref} alt="avatar collection" className="w-12 h-12 rounded-full" />
@@ -36,4 +36,4 @@ const TrendinCollectionItem = ({ index, imgHref, name, floor, vol, diffPercent }
   )
 }
 
-export default TrendinCollectionItem
+export default CollectionTicket

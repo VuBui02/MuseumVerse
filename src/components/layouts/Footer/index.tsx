@@ -1,4 +1,5 @@
 import React from 'react'
+import CustomSearchInput from '../../common/CustomSearchInput'
 
 const Footer = () => {
   return (

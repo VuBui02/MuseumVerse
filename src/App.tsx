@@ -1,17 +1,19 @@
-import React from 'react';
-import HomePage from './pages';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import React from "react";
+import HomePage from "./pages";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CreateNFTPage from "./pages/create-nft";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <HomePage />
+      element: <HomePage />,
     },
-  ])
+    {
+      path: "/create-nft",
+      element: <CreateNFTPage />,
+    },
+  ]);
 
   return (
     <div className="App">

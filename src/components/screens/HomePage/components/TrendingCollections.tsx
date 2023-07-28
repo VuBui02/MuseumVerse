@@ -1,33 +1,56 @@
 import React from 'react'
-import TrendinCollectionItem from '../../../common/TrendingCollectionItem'
+import CollectionTicket from '../../../common/CollectionTicket'
 
 const TrendingCollections = () => {
   return (
-    <div className="mt-12">
+    <div className="mt-12 px-12 md:px-0">
       <div className="mb-4">
-        <p className="font-semibold text-2xl">Trending Collections</p>
+        <p className="font-semibold text-2xl text-amber-400">Trending Collections</p>
       </div>
-      <TrendinCollectionItem
-        index={1}
-        imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'
-        name='Ted_NFT'
-        floor={1.3}
-        vol={736.29}
-      />
-      <TrendinCollectionItem
-        index={1}
-        imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'
-        name='Ted_NFT'
-        floor={1.3}
-        vol={736.29}
-      />
-      <TrendinCollectionItem
-        index={1}
-        imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'
-        name='Ted_NFT'
-        floor={1.3}
-        vol={736.29}
-      />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <CollectionTicket
+          index={1}
+          imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'
+          name='Ted_NFT'
+          floor={1.3}
+          vol={736.29}
+        />
+        <CollectionTicket
+          index={1}
+          imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'
+          name='Ted_NFT'
+          floor={1.3}
+          vol={736.29}
+        />
+        <CollectionTicket
+          index={1}
+          imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'
+          name='Ted_NFT'
+          floor={1.3}
+          vol={736.29}
+        />
+        <CollectionTicket
+          index={1}
+          imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'
+          name='Ted_NFT'
+          floor={1.3}
+          vol={736.29}
+        />
+        <CollectionTicket
+          index={1}
+          imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'
+          name='Ted_NFT'
+          floor={1.3}
+          vol={736.29}
+        />
+        <CollectionTicket
+          index={1}
+          imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'
+          name='Ted_NFT'
+          floor={1.3}
+          vol={736.29}
+        />
+      </div>
     </div>
   )
 }

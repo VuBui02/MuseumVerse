@@ -16,9 +16,9 @@ const Information = () => {
         <div className="w-[360px] lg:w-[45%] xl:w-[40%]">
           <div className="w-full h-full border border-amber-400 rounded-xl flex p-4 flex-col cursor-pointer">
             <img src="/images/nft-1.jpeg" alt="" className="w-full h-[80%] object-cover rounded-xl" />
-            <p className="text-amber-300 text-xl mt-4">Quả cầu cửu long thời Nguyễn</p>
+            <p className="text-amber-300 text-xl mt-4">Quả cầu cửu long</p>
             <div className="flex justify-between">
-              <p className="text-white text-md">Quả cầu cửu long thời Nguyễn #1</p>
+              <p className="text-white text-md">Quả cầu cửu long #1</p>
               <div className="flex gap-1 items-center">
                 <img src="/icons/solana-icon.png" alt="" className="w-5 h-5" />
                 <span className="font-semibold text-white">0.87</span>

@@ -1,7 +1,9 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, useEffect, memo, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SearchInput } from './components/SearchInput'
 import ConnectWallet from '../../common/ConnectWallet'
+import DropDownMenu from './components/DropDownMenu'
+import { useClickOutside } from '../../../hooks'
 
 const SCROLL_THRESHOLD = 80
 
@@ -10,6 +12,12 @@ const Header = () => {
 
   const [searchValue, setSearchValue] = useState<string>('')
   const [isTransParent, setIsTransParent] = useState<boolean>(false)
+  const [isOpenDropDownMenu, setIsOpenDropDownMenu] = useState<boolean>(false)
+
+  const toggleRef = useRef<HTMLDivElement>(null)
+  const dropDownRef = useRef<HTMLDivElement>(null)
+
+  useClickOutside(dropDownRef, toggleRef, () => setIsOpenDropDownMenu(false))
 
   useEffect(() => {
     const changeColor = () => {
@@ -31,6 +39,11 @@ const Header = () => {
     }
   }, [])
 
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation()
+    setIsOpenDropDownMenu(prev => !prev)
+  }
+
   return (
     <div className={`sticky top-0 h-10 ${isTransParent ? 'backdrop-blur-lg bg-white/30' : 'bg-slate-100'} text-slate-900 flex items-center p-8 border-b border-slate-300 justify-between w-screen z-99`}>
       <div className="flex gap-8 items-center">
@@ -43,7 +56,12 @@ const Header = () => {
         <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">{t('collections')}</p>
         <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">{t('sellItems')}</p>
         <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">{t('loans')}</p>
-        <ConnectWallet />
+        <div className="relative" ref={toggleRef} onMouseDown={handleMouseDown}>
+          <ConnectWallet />
+        </div>
+        <div className={`absolute top-16 right-8 ${isOpenDropDownMenu ? 'menu-show' : 'menu-hidden'}`} ref={dropDownRef}>
+          <DropDownMenu />
+        </div>
       </div>
     </div>
   )

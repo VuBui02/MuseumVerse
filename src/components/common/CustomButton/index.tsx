@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 import SpinnerLoading from '../SpinnerLoading'
 
 type Props = {
@@ -28,4 +28,4 @@ const CustomButton = ({ customClassName, label, isLoading = false, isDisable = f
   )
 }
 
-export default CustomButton
+export default memo(CustomButton)

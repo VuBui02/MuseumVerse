@@ -1,4 +1,4 @@
-import React, { useId } from 'react'
+import React, { useId, memo } from 'react'
 import SearchIcon from '../../icons/SearchIcon'
 import SpinnerLoading from '../SpinnerLoading'
 
@@ -38,4 +38,4 @@ const CustomSearchInput = ({ label, placeholder, isLoading = false, onSearch }: 
   )
 }
 
-export default CustomSearchInput
+export default memo(CustomSearchInput)

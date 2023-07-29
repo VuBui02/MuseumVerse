@@ -8,7 +8,9 @@ const ZUSTAND_STORAGE_NAME = 'zustand.museum_nft'
 
 const emptyState: StoreSlice = {
   accountInfo: {
-    publicKey: ''
+    publicKey: '',
+    marketPlaceAddress: '',
+    isMuseum: false,
   },
   saveWebAccountInfo: () => {
     return

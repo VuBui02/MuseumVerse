@@ -2,6 +2,8 @@ import { useEffect, useState, memo } from "react";
 import { useTranslation } from "react-i18next";
 import { PublicKey, Transaction } from "@solana/web3.js";
 import { useBoundStore } from "../../../zustand";
+import museums from "../../../api/museums";
+import { MuseumInput } from "../../../model/api";
 
 type DisplayEncoding = "utf8" | "hex";
 type PhantomEvent = "disconnect" | "connect" | "accountChanged";
@@ -48,30 +50,41 @@ const ConnectWallet = () => {
     undefined
   );
 
-  const [walletKey, setWalletKey] = useState<PhantomProvider | undefined>(
-    undefined
-  );
+  const [walletKey, setWalletKey] = useState<string>();
 
   const { setWebAccountInfo } = useBoundStore((store) => ({
     setWebAccountInfo: store.saveWebAccountInfo,
   }))
 
+  const fetchMuseumByPublicKey = async (publicKey: string) => {
+    const museumInput: MuseumInput = {
+      publicKey
+    }
+    try {
+      const response = await museums.get(museumInput)
+      const accountInfo = {
+        publicKey,
+        marketPlaceAddress: '',
+        isMuseum: response ? true : false
+      }
+      console.log('accountInfo: ', accountInfo)
+      setWebAccountInfo(accountInfo)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const connectWallet = async () => {
     // @ts-ignore
     const { solana } = window;
-    console.log(solana);
 
     if (solana) {
       try {
         const response = await solana.connect();
         console.log('account info', response)
         console.log("wallet account ", response.publicKey.toString());
-        const accountInfo = {
-          publicKey: response.publicKey.toString()
-        }
-        setWebAccountInfo(accountInfo)
+        fetchMuseumByPublicKey(response.publicKey.toString())
         setWalletKey(response.publicKey.toString());
-        console.log(response.publicKey.toString());
       } catch (err) {
         console.log(err);
         // { code: 4001, message: 'User rejected the request.' }

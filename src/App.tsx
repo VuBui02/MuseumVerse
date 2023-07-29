@@ -6,6 +6,8 @@ import CollectionsPage from "./pages/CollectionsPage";
 import WalletPage from "./pages/WalletPage";
 import NotConnectWalletScreen from "./components/screens/WalletPage/components/NotConnectWalletScreen";
 import MuseumCollectionPage from "./pages/museum-collection";
+import LoginPage from "./pages/Login";
+import CollectionDetailPage from "./pages/CollectionDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +35,14 @@ function App() {
       path: "museum-collection",
       element: <MuseumCollectionPage />,
     },
+    {
+      path: "museum/login",
+      element: <LoginPage />,
+    },
+    {
+      path: "/collections/detail",
+      element: <CollectionDetailPage />,
+    }
   ]);
 
   return (

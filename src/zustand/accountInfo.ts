@@ -9,11 +9,13 @@ export interface AccountInfoSlice {
 
 export const createAccountInfoSlice: StateCreator<AccountInfoSlice, [], [], AccountInfoSlice> = (set) => ({
   accountInfo: {
-    publicKey: ''
+    publicKey: '',
+    marketPlaceAddress: '',
+    isMuseum: false,
   },
   saveWebAccountInfo: (payload: WebAccountInfo) =>
     set(() => ({
       accountInfo: payload,
     })),
-  removeAccountInfo: () => set(() => ({ accountInfo: { publicKey: '' } })),
+  removeAccountInfo: () => set(() => ({ accountInfo: { publicKey: '', marketPlaceAddress: '', isMuseum: false } })),
 })

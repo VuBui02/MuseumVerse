@@ -31,15 +31,11 @@ function App() {
       element: <WalletPage />,
     },
     {
-      path: "/wallet/loans",
-      element: <NotConnectWalletScreen />,
-    },
-    {
-      path: "museum/collection",
+      path: "/museum/collection",
       element: <MuseumCollectionPage />,
     },
     {
-      path: "museum/login",
+      path: "/museum/login",
       element: <LoginPage />,
     },
     {

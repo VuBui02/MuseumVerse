@@ -53,9 +53,8 @@ const Header = () => {
 
   return (
     <div
-      className={`sticky top-0 h-10 ${
-        isTransParent ? "backdrop-blur-lg bg-white/30" : "bg-slate-100"
-      } text-slate-900 flex items-center p-8 border-b border-slate-300 justify-between w-screen z-99`}
+      className={`sticky top-0 h-10 ${isTransParent ? "backdrop-blur-lg bg-white/30" : "bg-slate-100"
+        } text-slate-900 flex items-center p-8 border-b border-slate-300 justify-between w-screen z-99`}
     >
       <div className="flex gap-8 items-center">
         <Link to="/">
@@ -73,12 +72,12 @@ const Header = () => {
       <div className="flex gap-8 font-semibold items-center">
         {accountInfo.isMuseum && (
           <>
-            <Link to="museum/create-nft">
+            <Link to="/museum/create-nft">
               <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
                 Create NFTs
               </p>
             </Link>
-            <Link to="museum/collection">
+            <Link to="/museum/collection">
               <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
                 Your Collection
               </p>
@@ -95,9 +94,9 @@ const Header = () => {
             Marketplace
           </p>
         </Link>
-        <Link to="/wallet/loans">
+        <Link to="/wallet">
           <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
-            My NFTs
+            Wallet
           </p>
         </Link>
         <div className="relative" ref={toggleRef} onMouseDown={handleMouseDown}>
@@ -110,9 +109,8 @@ const Header = () => {
           )}
         </div>
         <div
-          className={`absolute top-16 right-8 ${
-            isOpenDropDownMenu ? "menu-show" : "menu-hidden"
-          }`}
+          className={`absolute top-16 right-8 ${isOpenDropDownMenu ? "menu-show" : "menu-hidden"
+            }`}
           ref={dropDownRef}
         >
           <DropDownMenu onLogout={removeAccountInfo} />

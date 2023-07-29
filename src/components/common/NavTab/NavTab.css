@@ -12,25 +12,25 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 500px;
-    height: 300px;
+    width: 95%;
+    height: 450px;
     background: #f1f1f1;
     margin: 100px auto 0;
     word-break: break-all;
-    border: 1px solid rgba(0, 0, 0, 0.274);
+    /* border: 1px solid rgba(0, 0, 0, 0.274); */
   }
   
   .bloc-tabs {
     display: flex;
   }
   .tabs {
-  
     padding: 15px;
     text-align: center;
     width: 50%;
-    background: rgba(128, 128, 128, 0.075);
+    background: rgb(209 213 219);
+    color: white;
     cursor: pointer;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.274); */
     box-sizing: content-box;
     position: relative;
     outline: none;
@@ -42,6 +42,7 @@
   .active-tabs  {
     background: white;
     border-bottom: 1px solid transparent;
+    color: black
   }
   
   .active-tabs::before {
@@ -53,7 +54,7 @@
     transform: translateX(-50%);
     width: calc(100% + 2px);
     height: 5px;
-    background: rgb(88, 147, 241);
+    background: rgb(251 191 36);
   }
   
   

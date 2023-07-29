@@ -1,12 +1,24 @@
 import axiosClient from ".";
 import { MuseumInput } from "../model/api";
 
-const museums = {
-    get: (museumInput: MuseumInput) => {
-        const url = `/museums?publicKey=${museumInput.publicKey}`
-        console.log(url)
-        return axiosClient.get(url)
-    },
-}
+type Museum = {
+  id: string;
+  name: string;
+  publicKey: string;
+  marketPlaceAddress: string;
+  createAt: Date;
+};
 
-export default museums
+type GetMuseumResponse = {
+  data: Museum[];
+};
+
+const museums = {
+  get: (museumInput: MuseumInput) => {
+    const url = `/museums?publicKey=${museumInput.publicKey}`;
+    console.log(url);
+    return axiosClient.get<GetMuseumResponse>(url);
+  },
+};
+
+export default museums;

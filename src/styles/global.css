@@ -22,10 +22,12 @@
   0% {
     transform: translateY(140px);
     opacity: 0;
+    display: none;
   }
   100% {
     transform: translateY(0);
     opacity: 1;
+    display: block;
   }
 }
 
@@ -33,10 +35,12 @@
   0% {
     transform: translateY(0);
     opacity: 1;
+    display: block;
   }
   100% {
     transform: translateY(140px);
     opacity: 0;
+    display: none;
   }
 }
 

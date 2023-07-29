@@ -7,6 +7,7 @@ import { signAndConfirmTransactionFe } from "../../../utils/utilityfunc";
 import { NOTIFICATION_TYPE, notify } from "../../../utils/notify";
 import CustomButton from "../../common/CustomButton";
 import ConnectWallet from "../../common/ConnectWallet";
+import SpinnerLoading from "../../common/SpinnerLoading";
 
 export const MuseumCollectionScreen = () => {
   const { accountInfo, setWebAccountInfo } = useBoundStore((store) => ({
@@ -14,6 +15,8 @@ export const MuseumCollectionScreen = () => {
     setWebAccountInfo: store.saveWebAccountInfo,
   }));
   const [dataFetched, setDataFetched] = useState([]);
+
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const getNFTCollection = async () => {
     console.log(accountInfo);
@@ -29,7 +32,7 @@ export const MuseumCollectionScreen = () => {
     })
       .then((res) => {
         console.log(res.data.result);
-
+        setIsLoading(false)
         setDataFetched(res.data.result);
       })
       .catch((err) => {
@@ -80,28 +83,33 @@ export const MuseumCollectionScreen = () => {
 
   return (
     <div className="mt-12 md:mt-0 md:py-24 md:px-12 lg:px-16 xl:px-28">
-      {!accountInfo.publicKey ? (
+      <p className="text-amber-400 font-semibold text-3xl mb-8">Your Collection</p>
+      {!accountInfo.publicKey ?
         <div className="mt-24 w-[20%] px-8 py-6 border-2 border-black rounded-lg m-auto">
           <p className="text-center mb-2">Please connect your wallet</p>
           <ConnectWallet />
         </div>
-      ) : dataFetched && dataFetched.length ? (
-        <div className="grid grid-cols-4 justify-center">
-          {dataFetched
-            ? dataFetched.map((element, index) => (
-                <Card
-                  data={element}
-                  accountInfo={accountInfo}
-                  setWebAccountInfo={setWebAccountInfo}
-                />
-              ))
-            : null}
-        </div>
-      ) : (
-        <div className="m-auto border-2 border-black w-1/3">
-          <CustomButton label="Create marketplace" />
-        </div>
-      )}
+        :
+        !accountInfo.isMuseum ?
+          <div>
+            <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 border border-red-800" role="alert">
+              <span className="font-medium">Musuem Only!</span> You don't have permission to access this page.
+            </div>
+            <p className="text-sm font-normal text-gray-400">Nếu bạn thuộc phía bảo tàng hãy liên hệ với chúng tôi!</p>
+          </div> :
+          isLoading ?
+            <div className="flex justify-center">
+              <SpinnerLoading size={12} />
+            </div>
+            :
+            <div className="grid grid-cols-4 justify-center gap-8">
+              {dataFetched
+                ? dataFetched.map((element, index) => (
+                  <Card data={element} accountInfo={accountInfo} setWebAccountInfo={setWebAccountInfo} />
+                ))
+                : null}
+            </div>
+      }
     </div>
   );
 };

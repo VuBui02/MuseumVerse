@@ -2,7 +2,7 @@ import React from 'react'
 import CustomButton from '../../common/CustomButton'
 import DropdownContainer from '../../common/DropdownContainer'
 import { SETTINGS_ONE_ROW } from '../../../constants'
-import CardSlide from '../../common/CardSlide'
+import NFTCard from '../../common/NFTCard'
 
 const CollectionDetail = () => {
   return (
@@ -55,22 +55,22 @@ const CollectionDetail = () => {
       </div>
       <div >
         <DropdownContainer label="Suggested">
-          <CardSlide
+          <NFTCard
             imgHref='/images/nft-1.jpeg'
             name="Quả cầu cửu long"
             price={2.11}
           />
-          <CardSlide
+          <NFTCard
             imgHref='/images/nft-1.jpeg'
             name="Quả cầu cửu long"
             price={2.11}
           />
-          <CardSlide
+          <NFTCard
             imgHref='/images/nft-1.jpeg'
             name="Quả cầu cửu long"
             price={2.11}
           />
-          <CardSlide
+          <NFTCard
             imgHref='/images/nft-1.jpeg'
             name="Quả cầu cửu long"
             price={2.11}

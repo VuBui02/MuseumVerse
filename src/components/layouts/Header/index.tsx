@@ -21,6 +21,7 @@ const Header = () => {
 
   const { accountInfo, removeAccountInfo } = useBoundStore((store) => ({
     accountInfo: store.accountInfo,
+    removeAccountInfo: store.removeAccountInfo,
   }));
 
   useClickOutside(dropDownRef, toggleRef, () => setIsOpenDropDownMenu(false));

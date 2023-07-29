@@ -2,7 +2,6 @@ import { useState } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import { Formik, Field, Form, FormikHelpers } from "formik";
-import defaultAvatar from "../../../../../public/images/file_default.jpeg";
 import { signAndConfirmTransactionFe } from "../../../../utils/utilityfunc";
 import { X_API_KEY } from "../../../../config/variable";
 import { NOTIFICATION_TYPE, notify } from "../../../../utils/notify";
@@ -30,7 +29,7 @@ const validationSchema = yup.object({
 });
 
 export const CreateForm = () => {
-  const [displayPic, setDisplayPic] = useState(defaultAvatar);
+  const [displayPic, setDisplayPic] = useState("/public/images/file_default.jpeg");
   const [file, setFile] = useState<File>();
   const [attributes, setAttributes] = useState<AttributeType[]>([
     { trait_type: "edification", value: "100" },

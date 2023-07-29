@@ -7,9 +7,11 @@ import { signAndConfirmTransactionFe } from "../../../../utils/utilityfunc";
 export const Card = ({
   data,
   accountInfo,
+  setWebAccountInfo,
 }: {
   data: any;
   accountInfo: WebAccountInfo;
+  setWebAccountInfo: (data: WebAccountInfo) => void
 }) => {
   const [isSell, setIsSell] = useState<boolean>(false);
   const [price, setPrice] = useState<string>("");

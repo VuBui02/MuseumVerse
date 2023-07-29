@@ -61,15 +61,15 @@ const ConnectWallet = () => {
       publicKey,
     };
     try {
-      const response = await museums.get(museumInput);
-
+      const response = await museums.get(museumInput)
+      console.log("response: ", response)
       const accountInfo = {
         publicKey,
-        marketPlaceAddress: Object.values(response)[0].marketPlaceAddress,
-        isMuseum: response ? true : false,
-      };
-      console.log("accountInfo: ", accountInfo);
-      setWebAccountInfo(accountInfo);
+        marketPlaceAddress: '',
+        isMuseum: !!Object.values(response).length
+      }
+      console.log('accountInfo: ', accountInfo)
+      setWebAccountInfo(accountInfo)
     } catch (error) {
       console.log(error);
     }
@@ -102,7 +102,7 @@ const ConnectWallet = () => {
   return (
     <div
       onClick={connectWallet}
-      className="bg-black rounded-xl text-white font-semibold px-4 py-2 text-sm cursor-pointer hover:bg-white border hover:border-black hover:text-black transition-all delay-75"
+      className="bg-black rounded-xl text-white font-semibold px-4 py-2 text-sm cursor-pointer hover:bg-white border hover:border-black hover:text-black transition-all delay-75 text-center"
     >
       {t("connectWallet")}
     </div>

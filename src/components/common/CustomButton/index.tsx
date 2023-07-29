@@ -13,7 +13,7 @@ const CustomButton = ({ customClassName, label, isLoading = false, isDisable = f
   return (
     <button
       disabled={isDisable}
-      className={customClassName ?? 'px-4 py-2 bg-amber-400 text-black rounded-lg font-semibold hover:opacity-90 transition-all delay-[30ms] w-full'}
+      className={`px-4 py-2 bg-amber-400 text-black rounded-lg font-semibold hover:opacity-90 transition-all delay-[30ms] w-full ${customClassName}`}
       onClick={onClick}
     >
       {!isLoading ? label :

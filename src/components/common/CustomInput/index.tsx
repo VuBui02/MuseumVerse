@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 type Props = {
   type?: string
-  label: string
+  label?: string
   placeholder?: string
   id?: string
   value?: string | number
@@ -14,7 +14,9 @@ type Props = {
 const CustomInput = ({ type = 'text', label, placeholder, id, value, isError, isDisable, onChange }: Props) => {
   return (
     <div className="w-full">
-      <label htmlFor={id} className={`block mb-2 font-medium ${isError ? 'text-red-700' : 'text-gray-900'}`}>{label}</label>
+      {label &&
+        <label htmlFor={id} className={`block mb-2 font-medium ${isError ? 'text-red-700' : 'text-gray-900'}`}>{label}</label>
+      }
       <input
         type={type}
         id={id}

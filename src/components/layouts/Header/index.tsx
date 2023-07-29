@@ -94,11 +94,13 @@ const Header = () => {
             Marketplace
           </p>
         </Link>
-        <Link to="/wallet">
-          <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
-            Wallet
-          </p>
-        </Link>
+        {!accountInfo.isMuseum &&
+          <Link to="/wallet">
+            <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
+              Wallet
+            </p>
+          </Link>
+        }
         <div className="relative" ref={toggleRef} onMouseDown={handleMouseDown}>
           {accountInfo.publicKey.length === 0 ? (
             <ConnectWallet />

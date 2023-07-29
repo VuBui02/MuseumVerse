@@ -3,6 +3,40 @@ import CustomButton from '../../common/CustomButton'
 import DropdownContainer from '../../common/DropdownContainer'
 import { SETTINGS_ONE_ROW } from '../../../constants'
 import NFTCard from '../../common/NFTCard'
+import Slider from '../../common/Slider/Slider'
+
+let data = [
+  {
+    imgHref: "/images/nft-1.jpeg",
+    name: "1",
+    quantity: 1,
+    volume: 2.5,
+  },
+  {
+    imgHref: "/images/nft-1.jpeg",
+    name: "2",
+    quantity: 2,
+    volume: 2.5,
+  },
+  {
+    imgHref: "/images/nft-1.jpeg",
+    name: "3",
+    quantity: 3,
+    volume: 2.5,
+  },
+  {
+    imgHref: "/images/nft-1.jpeg",
+    name: "4",
+    quantity: 4,
+    volume: 2.5,
+  },
+  {
+    imgHref: "/images/nft-1.jpeg",
+    name: "5",
+    quantity: 5,
+    volume: 2.5,
+  }
+]
 
 const CollectionDetail = () => {
   return (
@@ -55,26 +89,48 @@ const CollectionDetail = () => {
       </div>
       <div >
         <DropdownContainer label="Suggested">
-          <NFTCard
-            imgHref='/images/nft-1.jpeg'
-            name="Quả cầu cửu long"
-            price={2.11}
-          />
-          <NFTCard
-            imgHref='/images/nft-1.jpeg'
-            name="Quả cầu cửu long"
-            price={2.11}
-          />
-          <NFTCard
-            imgHref='/images/nft-1.jpeg'
-            name="Quả cầu cửu long"
-            price={2.11}
-          />
-          <NFTCard
-            imgHref='/images/nft-1.jpeg'
-            name="Quả cầu cửu long"
-            price={2.11}
-          />
+          <div className="grid grid-cols-4 gap-4">
+            <NFTCard
+              imgHref='/images/nft-1.jpeg'
+              name="Quả cầu cửu long"
+              price={2.11}
+            />
+            <NFTCard
+              imgHref='/images/nft-1.jpeg'
+              name="Quả cầu cửu long"
+              price={2.11}
+            />
+            <NFTCard
+              imgHref='/images/nft-1.jpeg'
+              name="Quả cầu cửu long"
+              price={2.11}
+            />
+            <NFTCard
+              imgHref='/images/nft-1.jpeg'
+              name="Quả cầu cửu long"
+              price={2.11}
+            />
+            <NFTCard
+              imgHref='/images/nft-1.jpeg'
+              name="Quả cầu cửu long"
+              price={2.11}
+            />
+            <NFTCard
+              imgHref='/images/nft-1.jpeg'
+              name="Quả cầu cửu long"
+              price={2.11}
+            />
+            <NFTCard
+              imgHref='/images/nft-1.jpeg'
+              name="Quả cầu cửu long"
+              price={2.11}
+            />
+            <NFTCard
+              imgHref='/images/nft-1.jpeg'
+              name="Quả cầu cửu long"
+              price={2.11}
+            />
+          </div>
         </DropdownContainer>
       </div>
     </div>

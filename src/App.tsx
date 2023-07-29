@@ -39,7 +39,7 @@ function App() {
       element: <LoginPage />,
     },
     {
-      path: "/collections/detail",
+      path: "/collection/detail",
       element: <CollectionDetailPage />,
     },
     {

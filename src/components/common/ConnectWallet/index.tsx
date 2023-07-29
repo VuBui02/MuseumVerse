@@ -4,6 +4,7 @@ import { PublicKey, Transaction } from "@solana/web3.js";
 import { useBoundStore } from "../../../zustand";
 import museums from "../../../api/museums";
 import { MuseumInput } from "../../../model/api";
+import SpinnerLoading from "../SpinnerLoading";
 
 type DisplayEncoding = "utf8" | "hex";
 type PhantomEvent = "disconnect" | "connect" | "accountChanged";
@@ -46,6 +47,8 @@ const getProvider = (): PhantomProvider | undefined => {
 const ConnectWallet = () => {
   const { t } = useTranslation(["common"]);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
   const [provider, setProvider] = useState<PhantomProvider | undefined>(
     undefined
   );
@@ -57,7 +60,6 @@ const ConnectWallet = () => {
   }));
 
   const fetchMuseumByPublicKey = async (publicKey: string) => {
-    console.log("publicKey: ", publicKey)
     const museumInput: MuseumInput = {
       publicKey,
     };
@@ -71,15 +73,17 @@ const ConnectWallet = () => {
         isMuseum: !!Object.values(response).length
       }
       setWebAccountInfo(accountInfo)
+      setIsLoading(false)
     } catch (error) {
       console.log(error);
+      setIsLoading(false)
     }
   };
 
   const connectWallet = async () => {
     // @ts-ignore
     const { solana } = window;
-
+    setIsLoading(true)
     if (solana) {
       try {
         const response = await solana.connect();
@@ -89,6 +93,7 @@ const ConnectWallet = () => {
         setWalletKey(response.publicKey.toString());
       } catch (err) {
         console.log(err);
+        setIsLoading(false)
         // { code: 4001, message: 'User rejected the request.' }
       }
     }
@@ -103,9 +108,9 @@ const ConnectWallet = () => {
   return (
     <div
       onClick={connectWallet}
-      className="bg-black rounded-xl text-white font-semibold px-4 py-2 text-sm cursor-pointer hover:bg-white border hover:border-black hover:text-black transition-all delay-75 text-center"
+      className="bg-black rounded-xl text-white font-semibold px-4 py-2 text-sm cursor-pointer hover:bg-white border hover:border-black hover:text-black transition-all delay-75 text-center m-auto flex justify-center"
     >
-      {t("connectWallet")}
+      {isLoading ? <SpinnerLoading size={4} /> : t("connectWallet")}
     </div>
   );
 };

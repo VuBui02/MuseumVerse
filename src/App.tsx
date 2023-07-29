@@ -8,6 +8,8 @@ import NotConnectWalletScreen from "./components/screens/WalletPage/components/N
 import MuseumCollectionPage from "./pages/museum-collection";
 import LoginPage from "./pages/Login";
 import CollectionDetailPage from "./pages/CollectionDetail";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const router = createBrowserRouter([
@@ -47,6 +49,7 @@ function App() {
 
   return (
     <div className="App">
+      <ToastContainer />
       <RouterProvider router={router} />
     </div>
   );

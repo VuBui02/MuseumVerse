@@ -1,7 +1,6 @@
 import React from 'react'
 import CustomButton from '../../common/CustomButton'
 import DropdownContainer from '../../common/DropdownContainer'
-import CustomSlide from '../../common/CustomSlide'
 import { SETTINGS_ONE_ROW } from '../../../constants'
 import CardSlide from '../../common/CardSlide'
 

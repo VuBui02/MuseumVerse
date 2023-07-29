@@ -5,6 +5,7 @@ import { Formik, Field, Form, FormikHelpers } from "formik";
 import defaultAvatar from "../../../../../public/images/file_default.jpeg";
 import { signAndConfirmTransactionFe } from "../../../../utils/utilityfunc";
 import { X_API_KEY } from "../../../../config/variable";
+import { NOTIFICATION_TYPE, notify } from "../../../../utils/notify";
 
 interface FormValues {
   network: string;
@@ -32,7 +33,7 @@ export const CreateForm = () => {
     console.log("Signature ", signature);
     console.log("result ", result);
     if (signature.err === null) {
-      alert("done");
+      notify(NOTIFICATION_TYPE.SUCCESS, 'Tạo NFT thành công')
     }
   };
 
@@ -142,7 +143,7 @@ export const CreateForm = () => {
                 <option value="localnet">Localnet</option>
               </Field>
             </div>
-            
+
             <div className="flex justify-between">
               <span className="m-2">Public key</span>
               <Field name="wallet" placeholder="public key" className="w-5/6 rounded-lg p-2" />
@@ -167,7 +168,7 @@ export const CreateForm = () => {
         <div className="flex justify-center items-center mt-4">
           <button type="submit" className="p-2 bg-amber-400 hover:bg-amber-500 rounded-lg px-4">Submit</button>
         </div>
-        
+
       </Form>
     </Formik>
   );

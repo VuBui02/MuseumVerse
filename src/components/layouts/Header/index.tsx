@@ -44,7 +44,7 @@ const Header = () => {
         window.removeEventListener("scroll", changeColor);
       }
     };
-  }, []);
+  }, [])
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -61,7 +61,7 @@ const Header = () => {
         <Link to="/">
           <p className="font-bold text-xl">
             Museum
-            <span className="text-amber-400">NFT</span>
+            <span className="text-amber-400">Verse</span>
           </p>
         </Link>
 

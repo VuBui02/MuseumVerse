@@ -13,16 +13,18 @@ const AvatarBlock = () => {
       }));
 
       console.log("public key");
-    console.log(accountInfo);
+    console.log(accountInfo.publicKey);
     console.log(typeof accountInfo);
 
+    
   return (
     <div className="flex">
-        <div className="">
+        <div className="flex items-center">
             <Avvvatars value="best_user@gmail.com" 
                 size={80} />
-            <div className="">
-                <div className="">{accountInfo.publicKey}</div>
+            <div className="ml-5">
+                <div className="font-bold">{accountInfo.publicKey.substring(0, 7)}</div>
+                <div className="p-2 rounded-xl bg-amber-100">{accountInfo.publicKey}</div>
             </div>
         </div>
     </div>

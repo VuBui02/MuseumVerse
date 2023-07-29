@@ -41,8 +41,7 @@ export const MuseumCollectionScreen = () => {
     console.log("Signature ", signature);
     console.log("result ", result);
     if (signature.err === null) {
-
-      notify(NOTIFICATION_TYPE.SUCCESS, 'Create market place successfully!')
+      notify(NOTIFICATION_TYPE.SUCCESS, "Create market place successfully!");
     }
   };
 
@@ -81,24 +80,28 @@ export const MuseumCollectionScreen = () => {
 
   return (
     <div className="mt-12 md:mt-0 md:py-24 md:px-12 lg:px-16 xl:px-28">
-      {!accountInfo.publicKey ?
+      {!accountInfo.publicKey ? (
         <div className="mt-24 w-[20%] px-8 py-6 border-2 border-black rounded-lg m-auto">
           <p className="text-center mb-2">Please connect your wallet</p>
           <ConnectWallet />
         </div>
-        : dataFetched && dataFetched.length ?
-          <div className="grid grid-cols-4 justify-center">
-            {dataFetched
-              ? dataFetched.map((element, index) => (
-                <Card data={element} accountInfo={accountInfo} setWebAccountInfo={setWebAccountInfo} />
+      ) : dataFetched && dataFetched.length ? (
+        <div className="grid grid-cols-4 justify-center">
+          {dataFetched
+            ? dataFetched.map((element, index) => (
+                <Card
+                  data={element}
+                  accountInfo={accountInfo}
+                  setWebAccountInfo={setWebAccountInfo}
+                />
               ))
-              : null}
-          </div>
-          :
-          <div className="m-auto border-2 border-black w-1/3">
-            <CustomButton label="Create marketplace" />
-          </div>
-      }
+            : null}
+        </div>
+      ) : (
+        <div className="m-auto border-2 border-black w-1/3">
+          <CustomButton label="Create marketplace" />
+        </div>
+      )}
     </div>
   );
 };

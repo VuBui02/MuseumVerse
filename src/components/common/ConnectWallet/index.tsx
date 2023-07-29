@@ -54,25 +54,26 @@ const ConnectWallet = () => {
 
   const { setWebAccountInfo } = useBoundStore((store) => ({
     setWebAccountInfo: store.saveWebAccountInfo,
-  }))
+  }));
 
   const fetchMuseumByPublicKey = async (publicKey: string) => {
     const museumInput: MuseumInput = {
-      publicKey
-    }
+      publicKey,
+    };
     try {
-      const response = await museums.get(museumInput)
+      const response = await museums.get(museumInput);
+
       const accountInfo = {
         publicKey,
-        marketPlaceAddress: '',
-        isMuseum: response ? true : false
-      }
-      console.log('accountInfo: ', accountInfo)
-      setWebAccountInfo(accountInfo)
+        marketPlaceAddress: Object.values(response)[0].marketPlaceAddress,
+        isMuseum: response ? true : false,
+      };
+      console.log("accountInfo: ", accountInfo);
+      setWebAccountInfo(accountInfo);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const connectWallet = async () => {
     // @ts-ignore
@@ -81,9 +82,9 @@ const ConnectWallet = () => {
     if (solana) {
       try {
         const response = await solana.connect();
-        console.log('account info', response)
+        console.log("account info", response);
         console.log("wallet account ", response.publicKey.toString());
-        fetchMuseumByPublicKey(response.publicKey.toString())
+        fetchMuseumByPublicKey(response.publicKey.toString());
         setWalletKey(response.publicKey.toString());
       } catch (err) {
         console.log(err);

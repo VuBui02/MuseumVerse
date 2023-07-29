@@ -6,10 +6,10 @@ import defaultAvatar from "../../../../../public/images/file_default.jpeg";
 import { signAndConfirmTransactionFe } from "../../../../utils/utilityfunc";
 import { X_API_KEY } from "../../../../config/variable";
 import { NOTIFICATION_TYPE, notify } from "../../../../utils/notify";
+import { useBoundStore } from "../../../../zustand";
 
 interface FormValues {
   network: string;
-  wallet: string;
   name: string;
   symbol: string;
   description: string;
@@ -17,9 +17,13 @@ interface FormValues {
   maxSup: string;
 }
 
+interface AttributeType {
+  trait_type: string;
+  value: string;
+}
+
 const validationSchema = yup.object({
   network: yup.string(),
-  wallet: yup.string(),
   name: yup.string().required("Enter NFT's name"),
   symbol: yup.string().required("Enter NFT's symbol"),
   description: yup.string().required("Add a small story to this NFT"),
@@ -28,12 +32,18 @@ const validationSchema = yup.object({
 export const CreateForm = () => {
   const [displayPic, setDisplayPic] = useState(defaultAvatar);
   const [file, setFile] = useState<File>();
+  const [attributes, setAttributes] = useState<AttributeType[]>([
+    { trait_type: "edification", value: "100" },
+  ]);
+  const { accountInfo } = useBoundStore((store) => ({
+    accountInfo: store.accountInfo,
+  }));
 
   const callback = (signature: any, result: any) => {
     console.log("Signature ", signature);
     console.log("result ", result);
     if (signature.err === null) {
-      notify(NOTIFICATION_TYPE.SUCCESS, 'Tạo NFT thành công')
+      notify(NOTIFICATION_TYPE.SUCCESS, "Tạo NFT thành công");
     }
   };
 
@@ -43,14 +53,11 @@ export const CreateForm = () => {
     let formData = new FormData();
 
     formData.append("network", values.network);
-    formData.append("wallet", values.wallet);
+    formData.append("wallet", accountInfo.publicKey);
     formData.append("name", values.name);
     formData.append("symbol", values.symbol);
     formData.append("description", values.description);
-    formData.append(
-      "attributes",
-      JSON.stringify([{ trait_type: "edification", value: "100" }])
-    );
+    formData.append("attributes", JSON.stringify(attributes));
     formData.append("external_url", "");
     formData.append("royalty", values.roy);
     formData.append("max_supply", values.maxSup);
@@ -80,11 +87,41 @@ export const CreateForm = () => {
       });
   };
 
+  const onAddAttribute = () => {
+    setAttributes((prev) => [...prev, { trait_type: "", value: "" }]);
+  };
+
+  // const onDeleteAttribute = (index: number) => {
+  //   setAttributes()
+  // }
+
+  const onChangeAttributeType = (index: number, value: string) => {
+    const newAttributes = [...attributes];
+    newAttributes[index].trait_type = value;
+    setAttributes((prev) => newAttributes);
+  };
+
+  const onChangeAttributeValue = (index: number, value: string) => {
+    const newAttributes = [...attributes];
+    newAttributes[index].value = value;
+    setAttributes((prev) => newAttributes);
+  };
+
+  const onDeleteAttribute = (atrIndex: number) => {
+    let newAttributes: AttributeType[] = [];
+
+    attributes.forEach((value, index) => {
+      if (index !== atrIndex) {
+        newAttributes.push(value);
+      }
+    });
+    setAttributes((prev) => newAttributes);
+  };
+
   return (
     <Formik
       initialValues={{
         network: "devnet",
-        wallet: "",
         name: "",
         symbol: "",
         description: "",
@@ -99,9 +136,7 @@ export const CreateForm = () => {
       <Form>
         <div>
           <div className="img-container text-center mt-5">
-            <div
-              className="uploaded-img flex items-center justify-center"
-            >
+            <div className="uploaded-img flex items-center justify-center">
               <img
                 src={displayPic}
                 alt="To be uploaded"
@@ -137,7 +172,11 @@ export const CreateForm = () => {
           <div className="flex flex-col gap-2">
             <div className="flex justify-between">
               <span className="m-2">Network</span>
-              <Field as="select" name="network" className="w-5/6 rounded-lg p-2">
+              <Field
+                as="select"
+                name="network"
+                className="w-5/6 rounded-lg p-2"
+              >
                 <option value="mainnet">Mainnet</option>
                 <option value="devnet">Devnet</option>
                 <option value="localnet">Localnet</option>
@@ -145,30 +184,76 @@ export const CreateForm = () => {
             </div>
 
             <div className="flex justify-between">
-              <span className="m-2">Public key</span>
-              <Field name="wallet" placeholder="public key" className="w-5/6 rounded-lg p-2" />
-            </div>
-
-            <div className="flex justify-between">
               <span className="m-2">NFT name</span>
-              <Field name="name" placeholder="NFT name" className="w-5/6 rounded-lg p-2" />
+              <Field
+                name="name"
+                placeholder="NFT name"
+                className="w-5/6 rounded-lg p-2"
+              />
             </div>
 
             <div className="flex justify-between">
               <span className="m-2">NFT symbol</span>
-              <Field name="symbol" placeholder="NFT symbol" className="w-5/6 rounded-lg p-2" />
+              <Field
+                name="symbol"
+                placeholder="NFT symbol"
+                className="w-5/6 rounded-lg p-2"
+              />
             </div>
 
             <div className="flex justify-between">
               <span className="m-2">NFT description</span>
-              <Field name="description" placeholder="NFT description" className="w-5/6 rounded-lg p-2" />
+              <Field
+                name="description"
+                placeholder="NFT description"
+                className="w-5/6 rounded-lg p-2"
+              />
+            </div>
+
+            <div className="flex justify-between">
+              <span className="m-2">NFT attributes</span>
+              <div className="w-5/6 rounded-lg p-2">
+                <button type="button" onClick={onAddAttribute}>
+                  Add attribute
+                </button>
+                {attributes.map((attribute, index) => (
+                  <div key={index}>
+                    <input
+                      value={attribute.trait_type}
+                      onChange={(e) =>
+                        onChangeAttributeType(index, e.target.value)
+                      }
+                      type="text"
+                      placeholder="Benefit"
+                    />
+                    <input
+                      value={attribute.value}
+                      onChange={(e) =>
+                        onChangeAttributeValue(index, e.target.value)
+                      }
+                      type="text"
+                      placeholder="Value"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => onDeleteAttribute(index)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
         <div className="flex justify-center items-center mt-4">
-          <button type="submit" className="p-2 bg-amber-400 hover:bg-amber-500 rounded-lg px-4">Submit</button>
+          <button
+            type="submit"
+            className="p-2 bg-amber-400 hover:bg-amber-500 rounded-lg px-4"
+          >
+            Submit
+          </button>
         </div>
-
       </Form>
     </Formik>
   );

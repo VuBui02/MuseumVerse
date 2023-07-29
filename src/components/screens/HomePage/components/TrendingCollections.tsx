@@ -9,7 +9,7 @@ const TrendingCollections = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
-          (new Array(9)).fill(0).map(_ => (
+          (new Array(6)).fill(0).map(_ => (
             <CollectionTicket
               index={1}
               imgHref='https://solanart.io/_next/image?url=https%3A%2F%2Fapi-v2.solanart.io%2Fcdn%2Fhttps%3A%2F%2Farweave.net%2FN8chsQjXlVAiL0zWpkIkM_7U3pE9IacyQ-U17v1OiKc%3Fext%3Dpng&w=3840&q=75'

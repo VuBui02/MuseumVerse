@@ -79,8 +79,8 @@ export const Card = ({
   }
 
   return (
-    <div className="border border-gray-300 rounded-xl shadow-lg bg-[#f4f5f6] pb-4">
-      <img src={data.image_uri} alt="" className="border-b border-gray-300 h-72 w-full object-cover" />
+    <div className="border border-gray-300 rounded-xl shadow-lg bg-[#f4f5f6] pb-4 hover:bg-amber-50 border hover:border-amber-200">
+      <img src={data.image_uri} alt="" className="border-b border-gray-300 h-72 w-full object-cover rounded-t-xl" />
       <p className="text-amber-500 font-semibold text-lg px-4 mb-2">{data.name}</p>
       {!isSell &&
         <div className="px-4">

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Formik, Field, Form, FormikHelpers } from "formik";
 import disPic from "../../../../../public/images/upload-file.jpg";
 import { signAndConfirmTransactionFe } from "../../../../utils/utilityfunc";
+import { X_API_KEY } from "../../../../config/variable";
 
 interface FormValues {
   network: string;
@@ -23,7 +24,6 @@ const validationSchema = yup.object({
   description: yup.string().required("Add a small story to this NFT"),
 });
 
-const xApiKey = "5BcDThNzqMdHpv-C";
 export const CreateForm = () => {
   const [displayPic, setDisplayPic] = useState(disPic);
   const [file, setFile] = useState<File>();
@@ -60,7 +60,7 @@ export const CreateForm = () => {
       method: "POST",
       headers: {
         "Content-Type": "multipart/form-data",
-        "x-api-key": xApiKey,
+        "x-api-key": X_API_KEY,
         Accept: "*/*",
         "Access-Control-Allow-Origin": "*",
       },

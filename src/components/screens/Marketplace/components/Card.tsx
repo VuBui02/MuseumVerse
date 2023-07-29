@@ -4,6 +4,7 @@ import { useBoundStore } from "../../../../zustand";
 import { signAndConfirmTransactionFe } from "../../../../utils/utilityfunc";
 import { NOTIFICATION_TYPE, notify } from "../../../../utils/notify";
 import { error } from "console";
+import CustomButton from "../../../common/CustomButton";
 
 export const Card = ({ data }: { data: any }) => {
   const { accountInfo } = useBoundStore((store) => ({
@@ -50,9 +51,23 @@ export const Card = ({ data }: { data: any }) => {
   };
 
   return (
-    <div>
-      <p>{data.nft.name}</p>
-      <button onClick={onBuyNft}>buy</button>
+    <div className="max-w-lg h-80 border border-gray-400 rounded-lg p-2 drop-shadow-lg cursor-pointer hover:bg-amber-50 transition-all delay-[30ms]">
+      <img src={data.nft.cached_image_uri} className="h-56 w-full" />
+      <div className="flex justify-between items-center mt-4">
+        <div>
+          <p className="font-bold text-lg">{data.nft.name}</p>
+          <div className="">{data.nft.description}</div>
+        </div>
+        <div>
+          <div className="flex items-center justify-center">
+            <img src="/icons/solana-icon.png" alt="" className="w-4 h-4" />
+            <div className="ml-2">{data.price}</div>
+          </div>
+         <CustomButton label="Buy" customClassName="px-4 py-2 bg-amber-400 text-black rounded-lg font-semibold hover:opacity-90 transition-all delay-[30ms]" onClick={onBuyNft} />
+        </div>
+
+      </div>
     </div>
+
   );
 };

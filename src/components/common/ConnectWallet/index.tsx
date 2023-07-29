@@ -57,18 +57,19 @@ const ConnectWallet = () => {
   }));
 
   const fetchMuseumByPublicKey = async (publicKey: string) => {
+    console.log("publicKey: ", publicKey)
     const museumInput: MuseumInput = {
       publicKey,
     };
     try {
       const response = await museums.get(museumInput)
       console.log("response: ", response)
+      console.log(response)
       const accountInfo = {
         publicKey,
         marketPlaceAddress: '',
         isMuseum: !!Object.values(response).length
       }
-      console.log('accountInfo: ', accountInfo)
       setWebAccountInfo(accountInfo)
     } catch (error) {
       console.log(error);

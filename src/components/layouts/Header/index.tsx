@@ -51,6 +51,8 @@ const Header = () => {
     setIsOpenDropDownMenu((prev) => !prev);
   };
 
+  console.log(accountInfo)
+
   return (
     <div
       className={`sticky top-0 h-10 ${isTransParent ? "backdrop-blur-lg bg-white/30" : "bg-slate-100"
@@ -94,7 +96,7 @@ const Header = () => {
             Marketplace
           </p>
         </Link>
-        {!accountInfo.isMuseum &&
+        {!accountInfo.isMuseum && accountInfo.publicKey &&
           <Link to="/wallet">
             <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
               Wallet

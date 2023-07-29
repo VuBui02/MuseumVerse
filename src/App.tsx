@@ -5,6 +5,7 @@ import CreateNFTPage from "./pages/create-nft";
 import CollectionsPage from "./pages/CollectionsPage";
 import WalletPage from "./pages/WalletPage";
 import NotConnectWalletScreen from "./components/screens/WalletPage/components/NotConnectWalletScreen";
+import MuseumCollectionPage from "./pages/museum-collection";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ function App() {
     {
       path: "/wallet/loans",
       element: <NotConnectWalletScreen />,
+    },
+    {
+      path: "museum-collection",
+      element: <MuseumCollectionPage />,
     },
   ]);
 

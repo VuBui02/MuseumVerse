@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { WebAccountInfo } from "../../../../model/common";
 import axios from "axios";
-import { X_API_KEY } from "../../../../config/variable";
+import { MARKETPLACE_ADDRESS, X_API_KEY } from "../../../../config/variable";
 import { signAndConfirmTransactionFe } from "../../../../utils/utilityfunc";
 
 export const Card = ({
@@ -31,8 +31,8 @@ export const Card = ({
     const sellData = {
       network: "devnet",
       nft_address: data.mint,
-      // marketplace_address: accountInfo?.marketplaceAddress,
-      marketplace_address: "HEqHqXL5gG8jzZrNVP6h2yjP78nwwFw68TBcDKiRZLk3",
+      // marketplace_address: accountInfo?.marketPlaceAddress,
+      marketplace_address: MARKETPLACE_ADDRESS,
       price: Number(price),
       seller_wallet: accountInfo.publicKey,
     };
@@ -46,11 +46,15 @@ export const Card = ({
         console.log(response.data.result);
         let network = "devnet";
         const transaction = response.data.result.encoded_transaction;
-        const ret_result = await signAndConfirmTransactionFe(
-          network,
-          transaction,
-          callback
-        );
+        try {
+          const ret_result = await signAndConfirmTransactionFe(
+            network,
+            transaction,
+            callback
+          );
+        } catch (error) {
+          console.log(error);
+        }
       });
   };
 

@@ -1,7 +1,7 @@
 import axiosClient from ".";
 import { MuseumInput } from "../model/api";
 
-type Museum = {
+export type Museum = {
   id: string;
   name: string;
   publicKey: string;

@@ -3,6 +3,7 @@ import { WebAccountInfo } from "../../../../model/common";
 import axios from "axios";
 import { MARKETPLACE_ADDRESS, X_API_KEY } from "../../../../config/variable";
 import { signAndConfirmTransactionFe } from "../../../../utils/utilityfunc";
+import CustomButton from "../../../common/CustomButton";
 
 export const Card = ({
   data,
@@ -61,9 +62,16 @@ export const Card = ({
   };
 
   return (
-    <div>
-      <p>{data.name}</p>
-      <button onClick={onList}>list</button>
+    <div className="flex mt-4">
+      <div className="p-4 border border-slate-300 rounded-xl w-1/4">
+        <p>{data.name}</p>
+        <CustomButton 
+            label='List'
+            onClick={onList}
+            customClassName = "px-4 py-2 bg-amber-400 text-black rounded-lg font-semibold hover:opacity-90 transition-all delay-[30ms]" 
+            />
+      </div>
+      
       {isSell ? (
         <>
           <input

@@ -1,7 +1,11 @@
 import React from 'react'
 import CustomButton from '../../../common/CustomButton'
 
-const DropDownMenu = () => {
+type Props = {
+  onLogout?: () => void
+}
+
+const DropDownMenu = ({ onLogout }: Props) => {
   return (
     <div className="bg-slate-200 rounded-lg h-fit w-52">
       <div className="p-8">
@@ -23,6 +27,7 @@ const DropDownMenu = () => {
         <div className="hover hover:bg-slate-300 px-4 py-2 cursor-pointer rounded-md mb-8">Activity</div>
         <CustomButton
           label='Log out'
+          onClick={onLogout}
         />
       </div>
     </div>

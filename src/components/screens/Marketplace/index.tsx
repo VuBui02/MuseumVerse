@@ -26,12 +26,17 @@ export const MarketplaceScreen = () => {
   useEffect(() => {
     getMarket();
   }, []);
+
+
   return (
     <div className="mt-12 md:mt-0 md:py-24 md:px-12 lg:px-16 xl:px-28">
-      <div className="grid grid-cols-4 justify-center">
-        {dataFetched
-          ? dataFetched.map((element) => <Card data={element} />)
-          : null}
+      <div className="mt-12 px-12 md:px-0">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 px-2">
+          {dataFetched
+            ? dataFetched.map((element) => <Card data={element} />)
+            : null}
+        </div>
+        
       </div>
     </div>
   );

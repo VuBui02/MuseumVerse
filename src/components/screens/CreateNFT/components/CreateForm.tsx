@@ -32,7 +32,7 @@ export const CreateForm = () => {
     console.log("Signature ", signature);
     console.log("result ", result);
     if (signature.err === null) {
-      alert("fail");
+      alert("done");
     }
   };
 

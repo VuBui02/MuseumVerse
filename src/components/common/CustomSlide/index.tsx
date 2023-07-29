@@ -1,17 +1,20 @@
-import React from 'react'
-import Slider from "react-slick";
+import React from "react";
 
 type Props = {
-  children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined
-  settings: any
-}
+  children:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | Iterable<React.ReactNode>
+    | React.ReactPortal
+    | null
+    | undefined;
+  settings: any;
+};
 
 const CustomSlide = ({ children, settings }: Props) => {
-  return (
-    <Slider {...settings}>
-      {children}
-    </Slider>
-  )
-}
+  return { children };
+};
 
-export default CustomSlide
+export default CustomSlide;

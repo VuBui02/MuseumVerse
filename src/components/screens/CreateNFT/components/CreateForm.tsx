@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import { Formik, Field, Form, FormikHelpers } from "formik";
-import disPic from "../../../../../public/images/upload-file.jpg";
+import defaultAvatar from "../../../../../public/images/file_default.jpeg";
 import { signAndConfirmTransactionFe } from "../../../../utils/utilityfunc";
 import { X_API_KEY } from "../../../../config/variable";
 
@@ -25,7 +25,7 @@ const validationSchema = yup.object({
 });
 
 export const CreateForm = () => {
-  const [displayPic, setDisplayPic] = useState(disPic);
+  const [displayPic, setDisplayPic] = useState(defaultAvatar);
   const [file, setFile] = useState<File>();
 
   const callback = (signature: any, result: any) => {
@@ -99,28 +99,16 @@ export const CreateForm = () => {
         <div>
           <div className="img-container text-center mt-5">
             <div
-              className="uploaded-img"
-              style={{
-                height: "200px",
-                width: "200px",
-                backgroundColor: "grey",
-                margin: "0 auto",
-                borderRadius: "10px",
-              }}
+              className="uploaded-img flex items-center justify-center"
             >
               <img
                 src={displayPic}
                 alt="To be uploaded"
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  objectFit: "cover",
-                }}
+                className="w-48 h-48 object-fill"
               />
             </div>
-            <div className="mt-3"></div>
-            <button className="button-24 text-light rounded-pill m-2">
-              Select File
+            <button className="m-2 bg-amber-400 p-2 rounded-xl hover:bg-amber-500">
+              Change image
             </button>
             <br></br>
             <input
@@ -146,14 +134,40 @@ export const CreateForm = () => {
             <div className="mb-3"></div>
           </div>
           <div className="flex flex-col gap-2">
-            <Field name="network" />
-            <Field name="wallet" placeholder="public key" />
-            <Field name="name" placeholder="NFT name" />
-            <Field name="symbol" placeholder="NFT symbol" />
-            <Field name="description" placeholder="NFT description" />
+            <div className="flex justify-between">
+              <span className="m-2">Network</span>
+              <Field as="select" name="network" className="w-5/6 rounded-lg p-2">
+                <option value="mainnet">Mainnet</option>
+                <option value="devnet">Devnet</option>
+                <option value="localnet">Localnet</option>
+              </Field>
+            </div>
+            
+            <div className="flex justify-between">
+              <span className="m-2">Public key</span>
+              <Field name="wallet" placeholder="public key" className="w-5/6 rounded-lg p-2" />
+            </div>
+
+            <div className="flex justify-between">
+              <span className="m-2">NFT name</span>
+              <Field name="name" placeholder="NFT name" className="w-5/6 rounded-lg p-2" />
+            </div>
+
+            <div className="flex justify-between">
+              <span className="m-2">NFT symbol</span>
+              <Field name="symbol" placeholder="NFT symbol" className="w-5/6 rounded-lg p-2" />
+            </div>
+
+            <div className="flex justify-between">
+              <span className="m-2">NFT description</span>
+              <Field name="description" placeholder="NFT description" className="w-5/6 rounded-lg p-2" />
+            </div>
           </div>
         </div>
-        <button type="submit">Submit</button>
+        <div className="flex justify-center items-center mt-4">
+          <button type="submit" className="p-2 bg-amber-400 hover:bg-amber-500 rounded-lg px-4">Submit</button>
+        </div>
+        
       </Form>
     </Formik>
   );

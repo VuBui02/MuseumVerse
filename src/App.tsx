@@ -9,7 +9,8 @@ import MuseumCollectionPage from "./pages/museum-collection";
 import LoginPage from "./pages/Login";
 import CollectionDetailPage from "./pages/CollectionDetail";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import MarketplacePage from "./pages/Marketplace";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,7 +19,7 @@ function App() {
       element: <HomePage />,
     },
     {
-      path: "/create-nft",
+      path: "/museum/create-nft",
       element: <CreateNFTPage />,
     },
     {
@@ -34,7 +35,7 @@ function App() {
       element: <NotConnectWalletScreen />,
     },
     {
-      path: "museum-collection",
+      path: "museum/collection",
       element: <MuseumCollectionPage />,
     },
     {
@@ -44,7 +45,11 @@ function App() {
     {
       path: "/collections/detail",
       element: <CollectionDetailPage />,
-    }
+    },
+    {
+      path: "/marketplace",
+      element: <MarketplacePage />,
+    },
   ]);
 
   return (

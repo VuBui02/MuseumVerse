@@ -75,6 +75,8 @@ export const CreateForm = () => {
       data: formData,
     })
       .then(async (response) => {
+        console.log("1");
+
         const transaction = response.data.result.encoded_transaction;
         const ret_result = await signAndConfirmTransactionFe(
           values.network,

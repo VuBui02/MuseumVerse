@@ -1,3 +1,3 @@
 export const X_API_KEY: string = "5BcDThNzqMdHpv-C";
 export const MARKETPLACE_ADDRESS =
-  "JBKWGAeFWfmbCoxWu7RPkfE7Cn7UUNjkfR83tnCeTxuT";
+  "HEqHqXL5gG8jzZrNVP6h2yjP78nwwFw68TBcDKiRZLk3";

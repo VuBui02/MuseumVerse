@@ -7,7 +7,7 @@ import WalletPage from "./pages/WalletPage";
 import NotConnectWalletScreen from "./components/screens/WalletPage/components/NotConnectWalletScreen";
 import MuseumCollectionPage from "./pages/museum-collection";
 import LoginPage from "./pages/Login";
-import CollectionDetailPage from "./pages/CollectionDetail";
+import NFTDetailPage from "./pages/NFTDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MarketplacePage from "./pages/Marketplace";
@@ -39,8 +39,13 @@ function App() {
       element: <LoginPage />,
     },
     {
-      path: "/collection/detail",
-      element: <CollectionDetailPage />,
+      path: "/nft/detail",
+      children: [
+        {
+          path: ":nftAddress/:price/:seller",
+          element: <NFTDetailPage />,
+        },
+      ],
     },
     {
       path: "/marketplace",

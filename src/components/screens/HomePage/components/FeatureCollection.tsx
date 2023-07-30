@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import CollectionCard from '../../../common/CollectionCard'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
 import 'swiper/swiper-bundle.min.css';
 import Slider from "../../../common/Slider/Slider";
+import museums from "../../../../api/museums";
 
 // import 'swiper/css';
 // import 'swiper/css/navigation';
@@ -93,17 +94,33 @@ let data = [
 ]
 
 const FeatureCollection = () => {
-    return (
-      <div className="w-full">
-        <div className="mt-12 px-12 md:px-0 w-full">
-          <div className="mb-4">
-            <p className="font-semibold text-2xl text-amber-400">Feature Collections</p>
-          </div>
-
-          <Slider data={data} />
+  const [listMuseum, setListMuseum] = useState<any[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  useEffect(() => {
+    const handleFetchAllMuseum = async () => {
+      try {
+        setIsLoading(true)
+        const response = await museums.getAll()
+        setListMuseum(Object.values(response))
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false)
+      }
+    }
+    handleFetchAllMuseum()
+  }, [])
+  return (
+    <div className="w-full">
+      <div className="mt-12 px-12 md:px-0 w-full">
+        <div className="mb-4">
+          <p className="font-semibold text-2xl text-amber-400">Feature Collections</p>
         </div>
+
+        <Slider data={listMuseum} />
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 export default FeatureCollection

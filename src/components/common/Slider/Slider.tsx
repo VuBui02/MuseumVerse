@@ -10,16 +10,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import NFTCard from "../NFTCard";
-
-type Collection = {
-    imgHref: string
-    name: string
-    quantity: number
-    volume: number
-}
-
+import { Museum } from "../../../api/museums";
 export interface Collections {
-    data: Collection[]
+    data: Museum[]
     isTicketCard?: boolean
 }
 
@@ -43,21 +36,10 @@ function Slider({ data, isTicketCard }: Collections) {
                     {
                         data.map((item, index) => (
                             <SwiperSlide key={index}>
-                                {isTicketCard ?
-                                    <NFTCard
-                                        imgHref='/images/nft-1.jpeg'
-                                        name="Quả cầu cửu long"
-                                        price={2.11}
-                                    /> :
-                                    //TODO: update collectionCard
-                                    // <CollectionCard
-                                    //     imgHref={item.imgHref}
-                                    //     name={item.name}
-                                    //     quantity={item.quantity}
-                                    //     volume={item.volume}
-                                    // />
-                                    <div></div>
-                                }
+                                <CollectionCard
+                                    publicKey={item.publicKey}
+                                    museum={item}
+                                />
                             </SwiperSlide>
                         ))
                     }

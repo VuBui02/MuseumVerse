@@ -116,6 +116,9 @@ const NFTDetailScreen = () => {
       {nftDetail ? (
         <div className="flex">
           <div className="flex-1">
+            <div className="mb-8">
+              <p>Xem sản phẩm tại <a href="https://vr3d.vn/trienlam/thuy-quai-makara-thap-mam">Triển lãm VR3D.</a></p><iframe width="500" height="480" src="https://vr3d.vn/trienlam/tuong-tac/thuy-quai-makara-thap-mam/embed.html" allowFullScreen></iframe>
+            </div>
             <img
               src={nftDetail?.cached_image_uri}
               alt=""

@@ -5,11 +5,11 @@ export type Museum = {
   id: string;
   name: string;
   publicKey: string;
-  marketPlaceAddress: string;
+  image: string;
   createAt: Date;
 };
 
-type GetMuseumResponse = {
+export type GetMuseumResponse = {
   data: Museum[];
 };
 
@@ -19,6 +19,14 @@ const museums = {
     const url = `/museums?publicKey=${museumInput.publicKey}`;
     console.log(url);
     return axiosClient.get<GetMuseumResponse>(url);
+  },
+  getById: (id: string) => {
+    const url = `/museums?id=${id}`
+    return axiosClient.get<GetMuseumResponse>(url)
+  },
+  getAll: () => {
+    const url = '/museums'
+    return axiosClient.get<GetMuseumResponse>(url)
   },
   put: (publicKey: string, data: any) => {
       const url= `/museums?publicKey=${publicKey}`

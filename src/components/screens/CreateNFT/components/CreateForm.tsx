@@ -29,7 +29,9 @@ const validationSchema = yup.object({
 });
 
 export const CreateForm = () => {
-  const [displayPic, setDisplayPic] = useState("/public/images/file_default.jpeg");
+  const [displayPic, setDisplayPic] = useState(
+    "/public/images/file_default.jpeg"
+  );
   const [file, setFile] = useState<File>();
   const [attributes, setAttributes] = useState<AttributeType[]>([
     { trait_type: "edification", value: "100" },
@@ -218,7 +220,7 @@ export const CreateForm = () => {
                   Add attribute
                 </button>
                 {attributes.map((attribute, index) => (
-                  <div key={index}>
+                  <div key={index} className="mt-2">
                     <input
                       value={attribute.trait_type}
                       onChange={(e) =>
@@ -226,6 +228,7 @@ export const CreateForm = () => {
                       }
                       type="text"
                       placeholder="Benefit"
+                      className="rounded-lg p-2 mr-2"
                     />
                     <input
                       value={attribute.value}
@@ -234,6 +237,7 @@ export const CreateForm = () => {
                       }
                       type="text"
                       placeholder="Value"
+                      className="rounded-lg p-2 mr-2"
                     />
                     <button
                       type="button"

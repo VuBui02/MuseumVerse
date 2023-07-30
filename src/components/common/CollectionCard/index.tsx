@@ -43,7 +43,9 @@ const CollectionCard = ({ publicKey, museum }: Props) => {
   };
 
   useEffect(() => {
-    getNFTCollection()
+    if (!isLoading) {
+      getNFTCollection()
+    }
   }, [])
 
   return (
@@ -56,7 +58,7 @@ const CollectionCard = ({ publicKey, museum }: Props) => {
         <div className="flex justify-between mt-12 items-center px-6">
           <div>
             <p className="font-semibold">{museum.name}</p>
-            <p className="text-gray-500 font-light">{dataFetched.length + 1} items</p>
+            <p className="text-gray-500 font-light">{dataFetched.length} items</p>
           </div>
           <div>
             <p className="font-semibold">Total Volume</p>

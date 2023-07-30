@@ -51,12 +51,11 @@ const Header = () => {
     setIsOpenDropDownMenu((prev) => !prev);
   };
 
-  console.log(accountInfo)
-
   return (
     <div
-      className={`sticky top-0 h-10 ${isTransParent ? "backdrop-blur-lg bg-white/30" : "bg-slate-100"
-        } text-slate-900 flex items-center p-8 border-b border-slate-300 justify-between w-screen z-99`}
+      className={`sticky top-0 h-10 ${
+        isTransParent ? "backdrop-blur-lg bg-white/30" : "bg-slate-100"
+      } text-slate-900 flex items-center p-8 border-b border-slate-300 justify-between w-screen z-99`}
     >
       <div className="flex gap-8 items-center">
         <Link to="/">
@@ -96,13 +95,13 @@ const Header = () => {
             Marketplace
           </p>
         </Link>
-        {!accountInfo.isMuseum && accountInfo.publicKey &&
+        {!accountInfo.isMuseum && accountInfo.publicKey && (
           <Link to="/wallet">
             <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
               Wallet
             </p>
           </Link>
-        }
+        )}
         <div className="relative" ref={toggleRef} onMouseDown={handleMouseDown}>
           {accountInfo.publicKey.length === 0 ? (
             <ConnectWallet />
@@ -113,8 +112,9 @@ const Header = () => {
           )}
         </div>
         <div
-          className={`absolute top-16 right-8 ${isOpenDropDownMenu ? "menu-show" : "menu-hidden"
-            }`}
+          className={`absolute top-16 right-8 ${
+            isOpenDropDownMenu ? "menu-show" : "menu-hidden"
+          }`}
           ref={dropDownRef}
         >
           <DropDownMenu onLogout={removeAccountInfo} />

@@ -49,12 +49,14 @@ function Slider({ data, isTicketCard }: Collections) {
                                         name="Quả cầu cửu long"
                                         price={2.11}
                                     /> :
-                                    <CollectionCard
-                                        imgHref={item.imgHref}
-                                        name={item.name}
-                                        quantity={item.quantity}
-                                        volume={item.volume}
-                                    />
+                                    //TODO: update collectionCard
+                                    // <CollectionCard
+                                    //     imgHref={item.imgHref}
+                                    //     name={item.name}
+                                    //     quantity={item.quantity}
+                                    //     volume={item.volume}
+                                    // />
+                                    <div></div>
                                 }
                             </SwiperSlide>
                         ))

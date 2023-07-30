@@ -6,11 +6,12 @@ import CollectionsPage from "./pages/CollectionsPage";
 import WalletPage from "./pages/WalletPage";
 import NotConnectWalletScreen from "./components/screens/WalletPage/components/NotConnectWalletScreen";
 import MuseumCollectionPage from "./pages/museum-collection";
-import LoginPage from "./pages/Login";
 import NFTDetailPage from "./pages/NFTDetail";
+import LoginPage from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MarketplacePage from "./pages/Marketplace";
+import CollectionDetailPage from "./pages/CollectionDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -51,6 +52,15 @@ function App() {
       path: "/marketplace",
       element: <MarketplacePage />,
     },
+    {
+      path: "/collection",
+      children: [
+        {
+          path: ":id",
+          element: <CollectionDetailPage />,
+        },
+      ],
+    }
   ]);
 
   return (

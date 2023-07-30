@@ -36,6 +36,7 @@ export const MuseumCollectionScreen = () => {
         setDataFetched(res.data.result);
       })
       .catch((err) => {
+        setIsLoading(false)
         console.warn(err);
       });
   };

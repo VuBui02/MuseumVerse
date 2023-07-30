@@ -1,6 +1,25 @@
+import { useEffect, useState } from "react"
+import museums, { GetMuseumResponse } from "../../../api/museums"
 import CollectionCard from "../../common/CollectionCard"
 
 const CollectionPageScreen = () => {
+    const [listMuseum, setListMuseum] = useState<any[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    useEffect(() => {
+        const handleFetchAllMuseum = async () => {
+            try {
+                setIsLoading(true)
+                const response = await museums.getAll()
+                setListMuseum(Object.values(response))
+                setIsLoading(false)
+            } catch (error) {
+                console.log(error);
+                setIsLoading(false)
+            }
+        }
+        handleFetchAllMuseum()
+    }, [])
+
     return (
         <div className="mt-12 md:mt-0 md:py-24 md:px-12 lg:px-16 xl:px-28">
             <div className="mt-12 px-12 md:px-0">
@@ -17,47 +36,14 @@ const CollectionPageScreen = () => {
                     </div>
 
                     <div>
-                        
+
                     </div>
 
                 </label>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 px-2">
-                    <CollectionCard
-                        imgHref='/images/nft-1.jpeg'
-                        name='Quả cầu cửu long'
-                        quantity={9}
-                        volume={10.2}
-                    />
-                    <CollectionCard
-                        imgHref='/images/nft-1.jpeg'
-                        name='Quả cầu cửu long'
-                        quantity={9}
-                        volume={10.2}
-                    />
-                    <CollectionCard
-                        imgHref='/images/nft-1.jpeg'
-                        name='Quả cầu cửu long'
-                        quantity={9}
-                        volume={10.2}
-                    />
-                    <CollectionCard
-                        imgHref='/images/nft-1.jpeg'
-                        name='Quả cầu cửu long'
-                        quantity={9}
-                        volume={10.2}
-                    />
-                    <CollectionCard
-                        imgHref='/images/nft-1.jpeg'
-                        name='Quả cầu cửu long'
-                        quantity={9}
-                        volume={10.2}
-                    />
-                    <CollectionCard
-                        imgHref='/images/nft-1.jpeg'
-                        name='Quả cầu cửu long'
-                        quantity={9}
-                        volume={10.2}
-                    />
+                    {listMuseum.map(museum => (
+                        <CollectionCard publicKey={museum.publicKey} museum={museum} />
+                    ))}
                 </div>
             </div>
         </div>

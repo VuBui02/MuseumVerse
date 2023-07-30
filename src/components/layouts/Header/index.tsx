@@ -80,7 +80,7 @@ const Header = () => {
             </Link>
             <Link to="/museum/collection">
               <p className="cursor-pointer hover:bg-slate-200 px-4 py-2 rounded-lg transition-all delay-[20ms]">
-                Your Collection
+                My Collection
               </p>
             </Link>
           </>
